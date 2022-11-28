@@ -8,12 +8,7 @@ $(document).ready(function () {
   const toggleDone = (eventTarget) => {
     $targetElement = $(eventTarget);
     $liElement = $targetElement.closest('li');
-
-    if ($liElement.hasClass('done')) {
-      $liElement.removeClass('done');
-    } else {
-      $liElement.addClass('done');
-    }
+    $liElement.toggleClass('done');
   }
   /**
    * Delete element when delete link clicked
@@ -51,6 +46,7 @@ $(document).ready(function () {
   };
 
   const listItemEventHandler = function (e) {
+    e.preventDefault();
     // try delete first and if not successful try toggle
     !deleteWithFadeOut(e.target, 1000) && toggleDone(e.target);
   }
